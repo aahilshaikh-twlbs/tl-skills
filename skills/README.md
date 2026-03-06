@@ -50,7 +50,7 @@ Use lowercase letters and hyphens only. No numbers at the start. Keep names shor
 
 ### Target length
 
-Aim for 110-120 lines in `SKILL.md`. This is long enough to provide meaningful guidance but short enough to stay focused. Skills that exceed 150 lines should be split or moved into `references/` files.
+Aim for 110-120 lines in `SKILL.md` — enough to be complete, not so long an agent skips reading it. Shorter is fine if the skill is simple. Skills that exceed 150 lines should be split or moved into `references/` files.
 
 ### Structure
 
@@ -107,5 +107,5 @@ Before opening a PR, verify:
 - [ ] `name` in frontmatter matches the folder name exactly
 - [ ] `description` starts with "Use when..."
 - [ ] `description` is under 1024 characters
-- [ ] `SKILL.md` is between 110-120 lines (target range)
+- [ ] `SKILL.md` is roughly 110-120 lines (guideline — shorter is fine for simple skills)
 - [ ] Any files referenced in `SKILL.md` exist in `references/`
