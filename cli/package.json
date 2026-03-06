@@ -7,7 +7,8 @@
   },
   "scripts": {
     "build": "bun build src/index.ts --outfile dist/index.js --target node --sourcemap",
-    "dev": "bun run src/index.ts"
+    "dev": "bun run src/index.ts",
+    "prepare": "bun run build"
   },
   "dependencies": {
     "commander": "^12.0.0"
