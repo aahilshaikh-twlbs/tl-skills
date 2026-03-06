@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'Milling';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://d2n8i6crd2t3p1.cloudfront.net/font/milling/205TF-Milling-Duplex1mm.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Milling';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://d2n8i6crd2t3p1.cloudfront.net/font/milling/205TF-Milling-Triplex1mm.woff2') format('woff2');
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, blockquote, hr { margin: 0; padding: 0; }
+table, td, th { margin: 0; padding: 0; border-collapse: collapse; }
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+
+:root {
+  --chalk: #F4F3F3;
+  --fog: #ECECEC;
+  --charcoal: #1D1C1B;
+  --ash: #8F8984;
+  --smoke: #D3D1CF;
+  --green: #60E21B;
+  --green-light: #BFF3A4;
+  --gradient: linear-gradient(90deg, #60E21B 0%, #FABA17 32.5%, #FFB592 69%, #FFB0CD 100%);
+}
+
+body {
+  background: var(--chalk);
+  color: var(--charcoal);
+  font-family: 'Milling', 'Noto Sans', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
