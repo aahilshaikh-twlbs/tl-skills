@@ -15,7 +15,6 @@ export function SearchClient({ skills }: { skills: SkillEntry[] }) {
 
   return (
     <>
-      {/* Search + count */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -28,7 +27,7 @@ export function SearchClient({ skills }: { skills: SkillEntry[] }) {
         <div style={{
           fontFamily: "'IBM Plex Mono', monospace",
           fontSize: 12,
-          color: '#8F8984',
+          color: 'var(--ash)',
           textTransform: 'uppercase' as const,
           letterSpacing: '1px',
           whiteSpace: 'nowrap' as const,
@@ -37,7 +36,6 @@ export function SearchClient({ skills }: { skills: SkillEntry[] }) {
         </div>
       </div>
 
-      {/* Skills grid */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
@@ -52,7 +50,7 @@ export function SearchClient({ skills }: { skills: SkillEntry[] }) {
             gridColumn: '1 / -1',
             textAlign: 'center',
             padding: '64px 0',
-            color: '#8F8984',
+            color: 'var(--ash)',
             fontFamily: "'Milling', 'Noto Sans', sans-serif",
           }}>
             No skills match &quot;{query}&quot;

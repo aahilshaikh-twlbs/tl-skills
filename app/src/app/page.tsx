@@ -1,12 +1,13 @@
 import { getManifest } from '@/lib/manifest';
 import { Logo } from '@/components/Logo';
 import { SearchClient } from '@/components/SearchClient';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function HomePage() {
   const { skills } = getManifest();
 
   return (
-    <div style={{ minHeight: '100vh', background: '#F4F3F3' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--chalk)' }}>
       {/* Dark hero card */}
       <div style={{
         position: 'relative',
@@ -16,7 +17,10 @@ export default function HomePage() {
         padding: '48px 48px 52px',
         overflow: 'hidden',
       }}>
-        <Logo width={160} color="#F4F3F3" />
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <Logo width={160} color="#F4F3F3" />
+          <ThemeToggle />
+        </div>
         <div style={{ marginTop: 32 }}>
           <h1 style={{
             fontFamily: "'Milling', 'Noto Sans', sans-serif",
@@ -54,17 +58,17 @@ export default function HomePage() {
 
       {/* Footer */}
       <div style={{
-        borderTop: '1px dashed #D3D1CF',
+        borderTop: '1px dashed var(--smoke)',
         padding: '24px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
       }}>
-        <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#8F8984' }}>
+        <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: 'var(--ash)' }}>
           TwelveLabs Internal
         </span>
         <a href="https://github.com/aahilshaikh-twlbs/tl-skills" style={{
-          fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#8F8984',
+          fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: 'var(--ash)',
         }}>
           GitHub
         </a>

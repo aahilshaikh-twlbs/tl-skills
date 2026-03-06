@@ -6,8 +6,9 @@ export function SkillCard({ skill }: { skill: SkillEntry }) {
   return (
     <Link href={`/skills/${skill.slug}`}>
       <div
+        className="skill-card"
         style={{
-          background: '#ECECEC',
+          background: 'var(--fog)',
           borderRadius: 24,
           padding: 24,
           cursor: 'pointer',
@@ -15,10 +16,7 @@ export function SkillCard({ skill }: { skill: SkillEntry }) {
           display: 'flex',
           flexDirection: 'column',
           gap: 12,
-          transition: 'background 0.15s',
         }}
-        onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = '#E2E2E2'; }}
-        onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = '#ECECEC'; }}
       >
         <div style={{
           display: 'inline-flex',
@@ -38,14 +36,14 @@ export function SkillCard({ skill }: { skill: SkillEntry }) {
           fontFamily: "'Milling', 'Noto Sans', sans-serif",
           fontSize: 20,
           fontWeight: 700,
-          color: '#1D1C1B',
+          color: 'var(--charcoal)',
         }}>
           {skill.name}
         </div>
         <div style={{
           fontFamily: "'Milling', 'Noto Sans', sans-serif",
           fontSize: 14,
-          color: '#8F8984',
+          color: 'var(--ash)',
           lineHeight: 1.5,
           flex: 1,
         }}>
@@ -56,8 +54,8 @@ export function SkillCard({ skill }: { skill: SkillEntry }) {
         <div style={{
           fontFamily: "'IBM Plex Mono', monospace",
           fontSize: 12,
-          color: '#45423F',
-          background: '#F4F3F3',
+          color: 'var(--shadow)',
+          background: 'var(--chalk)',
           borderRadius: 8,
           padding: '6px 10px',
         }}>
@@ -66,7 +64,7 @@ export function SkillCard({ skill }: { skill: SkillEntry }) {
         <div style={{
           fontFamily: "'IBM Plex Mono', monospace",
           fontSize: 11,
-          color: '#8F8984',
+          color: 'var(--ash)',
         }}>
           {skill.files.length} file{skill.files.length !== 1 ? 's' : ''}
         </div>
