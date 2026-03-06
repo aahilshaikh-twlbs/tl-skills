@@ -30,6 +30,8 @@ export default async function SkillDetailPage({
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '24px 32px',
+        maxWidth: 1100,
+        margin: '0 auto',
       }}>
         <Logo width={120} color="var(--charcoal)" />
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -45,88 +47,87 @@ export default async function SkillDetailPage({
       </div>
 
       {/* Content */}
-      <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 32px 64px' }}>
-        {/* Header card */}
-        <div style={{ background: 'var(--fog)', borderRadius: 24, padding: 32, marginBottom: 24 }}>
-          <div style={{
-            display: 'inline-flex',
-            background: '#BFF3A4',
-            color: '#1D1C1B',
-            borderRadius: 999,
-            padding: '3px 10px',
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: 11,
-            textTransform: 'uppercase' as const,
-            letterSpacing: '1px',
-            marginBottom: 16,
-          }}>
-            SKILL
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 32px 64px' }}>
+
+        {/* Dark hero card */}
+        <div style={{
+          background: 'var(--hero-bg)',
+          borderRadius: 24,
+          padding: '40px 48px',
+          marginBottom: 16,
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          {/* Top row: pill + version badge */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
+            <div style={{
+              display: 'inline-flex',
+              background: '#BFF3A4',
+              color: '#1D1C1B',
+              borderRadius: 999,
+              padding: '3px 10px',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: 11,
+              textTransform: 'uppercase' as const,
+              letterSpacing: '1px',
+            }}>
+              SKILL
+            </div>
+            {skill.version && (
+              <div style={{
+                display: 'inline-flex',
+                background: 'rgba(255,255,255,0.08)',
+                color: '#9B9895',
+                borderRadius: 999,
+                padding: '3px 10px',
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: 11,
+                letterSpacing: '0.5px',
+              }}>
+                v{skill.version}
+              </div>
+            )}
           </div>
+
           <h1 style={{
             fontFamily: "'Milling', 'Noto Sans', sans-serif",
-            fontSize: 36,
+            fontSize: 48,
             fontWeight: 400,
-            color: 'var(--charcoal)',
-            marginBottom: 12,
+            color: '#F4F3F3',
+            marginBottom: 16,
+            letterSpacing: '-0.01em',
           }}>
             {skill.name}
           </h1>
           <p style={{
             fontFamily: "'Milling', 'Noto Sans', sans-serif",
             fontSize: 19,
-            color: 'var(--ash)',
+            color: '#9B9895',
             lineHeight: 1.6,
+            maxWidth: 640,
+            marginBottom: 32,
           }}>
             {skill.description}
           </p>
-        </div>
 
-        {/* Metadata */}
-        {(skill.author || skill.version || skill.updatedAt || skill.changelog) && (
-          <div style={{ background: 'var(--fog)', borderRadius: 24, padding: 24, marginBottom: 24 }}>
-            <div style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 11,
-              color: 'var(--ash)',
-              textTransform: 'uppercase' as const,
-              letterSpacing: '2px',
-              marginBottom: 16,
-            }}>
-              ABOUT
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 24 }}>
+          {/* Author + date row */}
+          {(skill.author || skill.updatedAt) && (
+            <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
               {skill.author && (
                 <div>
                   <div style={{
                     fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: 10,
-                    color: 'var(--ash)',
+                    color: '#5C5A58',
                     textTransform: 'uppercase' as const,
                     letterSpacing: '1.5px',
-                    marginBottom: 4,
+                    marginBottom: 3,
                   }}>Author</div>
                   <div style={{
                     fontFamily: "'Milling', 'Noto Sans', sans-serif",
                     fontSize: 14,
-                    color: 'var(--charcoal)',
+                    color: '#9B9895',
                   }}>{skill.author}</div>
-                </div>
-              )}
-              {skill.version && (
-                <div>
-                  <div style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: 10,
-                    color: 'var(--ash)',
-                    textTransform: 'uppercase' as const,
-                    letterSpacing: '1.5px',
-                    marginBottom: 4,
-                  }}>Version</div>
-                  <div style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: 13,
-                    color: 'var(--charcoal)',
-                  }}>v{skill.version}</div>
                 </div>
               )}
               {skill.updatedAt && (
@@ -134,29 +135,128 @@ export default async function SkillDetailPage({
                   <div style={{
                     fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: 10,
-                    color: 'var(--ash)',
+                    color: '#5C5A58',
                     textTransform: 'uppercase' as const,
                     letterSpacing: '1.5px',
-                    marginBottom: 4,
+                    marginBottom: 3,
                   }}>Last Updated</div>
                   <div style={{
-                    fontFamily: "'Milling', 'Noto Sans', sans-serif",
-                    fontSize: 14,
-                    color: 'var(--charcoal)',
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: 13,
+                    color: '#9B9895',
                   }}>{skill.updatedAt}</div>
                 </div>
               )}
             </div>
-            {skill.changelog && (
-              <div style={{ marginTop: 20, paddingTop: 20, borderTop: '1px dashed var(--smoke)' }}>
+          )}
+
+          {/* Masterbrand gradient bar */}
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 4,
+            background: 'linear-gradient(90deg, #60E21B 0%, #FABA17 32.5%, #FFB592 69%, #FFB0CD 100%)',
+            borderRadius: '0 0 24px 24px',
+          }} />
+        </div>
+
+        {/* Two-column grid */}
+        <div className="detail-grid">
+          {/* Left: install + skill content */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {/* Install command */}
+            <div style={{
+              background: 'var(--fog)',
+              borderRadius: 24,
+              padding: 24,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 16,
+              flexWrap: 'wrap' as const,
+            }}>
+              <div>
                 <div style={{
                   fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: 10,
+                  fontSize: 11,
                   color: 'var(--ash)',
                   textTransform: 'uppercase' as const,
-                  letterSpacing: '1.5px',
+                  letterSpacing: '2px',
                   marginBottom: 8,
-                }}>Changelog</div>
+                }}>
+                  INSTALL
+                </div>
+                <code style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: 15,
+                  color: 'var(--charcoal)',
+                }}>
+                  {installCmd}
+                </code>
+              </div>
+              <CopyButton text={installCmd} />
+            </div>
+
+            {/* Skill content — collapsible raw markdown */}
+            <div style={{ background: 'var(--fog)', borderRadius: 24, padding: 32 }}>
+              <details className="skill-content-details">
+                <summary>
+                  <span style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: 11,
+                    color: 'var(--ash)',
+                    textTransform: 'uppercase' as const,
+                    letterSpacing: '2px',
+                  }}>
+                    SKILL CONTENT
+                  </span>
+                  <svg
+                    className="chevron"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    style={{ color: 'var(--ash)', flexShrink: 0 }}
+                  >
+                    <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </summary>
+                <pre style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: 12,
+                  lineHeight: 1.7,
+                  color: 'var(--charcoal)',
+                  background: 'var(--chalk)',
+                  borderRadius: 12,
+                  padding: 20,
+                  marginTop: 20,
+                  overflowX: 'auto',
+                  whiteSpace: 'pre-wrap',
+                  wordBreak: 'break-word',
+                }}>
+                  {skill.content}
+                </pre>
+              </details>
+            </div>
+          </div>
+
+          {/* Right sidebar: changelog + files */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {/* Changelog */}
+            {skill.changelog && (
+              <div style={{ background: 'var(--fog)', borderRadius: 24, padding: 24 }}>
+                <div style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: 11,
+                  color: 'var(--ash)',
+                  textTransform: 'uppercase' as const,
+                  letterSpacing: '2px',
+                  marginBottom: 12,
+                }}>
+                  CHANGELOG
+                </div>
                 <pre style={{
                   fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: 12,
@@ -168,98 +268,22 @@ export default async function SkillDetailPage({
                 }}>{skill.changelog}</pre>
               </div>
             )}
-          </div>
-        )}
 
-        {/* Install command */}
-        <div style={{
-          background: 'var(--fog)',
-          borderRadius: 24,
-          padding: 24,
-          marginBottom: 24,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 16,
-          flexWrap: 'wrap' as const,
-        }}>
-          <div>
-            <div style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 11,
-              color: 'var(--ash)',
-              textTransform: 'uppercase' as const,
-              letterSpacing: '2px',
-              marginBottom: 8,
-            }}>
-              INSTALL
-            </div>
-            <code style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 15,
-              color: 'var(--charcoal)',
-            }}>
-              {installCmd}
-            </code>
-          </div>
-          <CopyButton text={installCmd} />
-        </div>
-
-        {/* Files */}
-        <div style={{ background: 'var(--fog)', borderRadius: 24, padding: 24, marginBottom: 24 }}>
-          <div style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: 11,
-            color: 'var(--ash)',
-            textTransform: 'uppercase' as const,
-            letterSpacing: '2px',
-            marginBottom: 12,
-          }}>
-            INCLUDED FILES — {skill.files.length}
-          </div>
-          <FileTree files={skill.files} />
-        </div>
-
-        {/* Skill content — collapsible raw markdown */}
-        <div style={{ background: 'var(--fog)', borderRadius: 24, padding: 32 }}>
-          <details className="skill-content-details">
-            <summary>
-              <span style={{
+            {/* Files */}
+            <div style={{ background: 'var(--fog)', borderRadius: 24, padding: 24 }}>
+              <div style={{
                 fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: 11,
                 color: 'var(--ash)',
                 textTransform: 'uppercase' as const,
                 letterSpacing: '2px',
+                marginBottom: 12,
               }}>
-                SKILL CONTENT
-              </span>
-              <svg
-                className="chevron"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                style={{ color: 'var(--ash)', flexShrink: 0 }}
-              >
-                <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </summary>
-            <pre style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 12,
-              lineHeight: 1.7,
-              color: 'var(--charcoal)',
-              background: 'var(--chalk)',
-              borderRadius: 12,
-              padding: 20,
-              marginTop: 20,
-              overflowX: 'auto',
-              whiteSpace: 'pre-wrap',
-              wordBreak: 'break-word',
-            }}>
-              {skill.content}
-            </pre>
-          </details>
+                INCLUDED FILES — {skill.files.length}
+              </div>
+              <FileTree files={skill.files} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

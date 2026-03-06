@@ -28,6 +28,7 @@ a { text-decoration: none; color: inherit; }
   --green: #60E21B;
   --green-light: #BFF3A4;
   --gradient: linear-gradient(90deg, #60E21B 0%, #FABA17 32.5%, #FFB592 69%, #FFB0CD 100%);
+  --hero-bg: #1D1C1B;
 }
 
 [data-theme="dark"] {
@@ -38,6 +39,7 @@ a { text-decoration: none; color: inherit; }
   --shadow: #9B9895;
   --ash: #9B9895;
   --smoke: #45423F;
+  --hero-bg: #2C2B2A;
 }
 
 body {
@@ -48,6 +50,17 @@ body {
   line-height: 1.5;
   margin: 0;
   transition: background 0.2s, color 0.2s;
+}
+
+/* Detail page two-col grid */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 720px) {
+  .detail-grid { grid-template-columns: 1fr; }
 }
 
 /* Skill card hover */
