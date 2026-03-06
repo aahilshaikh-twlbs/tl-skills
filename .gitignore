@@ -10,3 +10,4 @@ app/out/
 .vercel/
 coverage/
 .env.*
+app/skills-manifest.json
