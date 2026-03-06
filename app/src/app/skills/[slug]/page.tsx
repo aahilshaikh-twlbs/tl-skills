@@ -22,6 +22,20 @@ export default async function SkillDetailPage({
 
   const installCmd = `npx tl-skills add ${skill.slug}`;
 
+  // Parse changelog into structured entries: "v1.0.0 (date): description"
+  const changelogEntries = skill.changelog
+    ? skill.changelog
+        .split(/(?=v\d+\.\d+\.\d+)/)
+        .map(e => e.trim())
+        .filter(Boolean)
+        .map(entry => {
+          const m = entry.match(/^(v[\d.]+)\s*\(([^)]+)\):\s*([\s\S]*)$/);
+          return m
+            ? { version: m[1], date: m[2], description: m[3].trim() }
+            : { version: '', date: '', description: entry };
+        })
+    : [];
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--chalk)' }}>
       {/* Nav */}
@@ -167,36 +181,35 @@ export default async function SkillDetailPage({
           {/* Left: install + skill content */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {/* Install command */}
-            <div style={{
-              background: 'var(--fog)',
-              borderRadius: 24,
-              padding: 24,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 16,
-              flexWrap: 'wrap' as const,
-            }}>
-              <div>
-                <div style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: 11,
-                  color: 'var(--ash)',
-                  textTransform: 'uppercase' as const,
-                  letterSpacing: '2px',
-                  marginBottom: 8,
-                }}>
-                  INSTALL
-                </div>
+            <div style={{ background: 'var(--fog)', borderRadius: 24, padding: 24 }}>
+              <div style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: 11,
+                color: 'var(--ash)',
+                textTransform: 'uppercase' as const,
+                letterSpacing: '2px',
+                marginBottom: 12,
+              }}>
+                INSTALL
+              </div>
+              <div style={{
+                background: 'var(--hero-bg)',
+                borderRadius: 12,
+                padding: '14px 18px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: 16,
+              }}>
                 <code style={{
                   fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: 15,
-                  color: 'var(--charcoal)',
+                  fontSize: 14,
+                  color: '#F4F3F3',
                 }}>
                   {installCmd}
                 </code>
+                <CopyButton text={installCmd} />
               </div>
-              <CopyButton text={installCmd} />
             </div>
 
             {/* Skill content — collapsible raw markdown */}
@@ -245,7 +258,7 @@ export default async function SkillDetailPage({
           {/* Right sidebar: changelog + files */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {/* Changelog */}
-            {skill.changelog && (
+            {changelogEntries.length > 0 && (
               <div style={{ background: 'var(--fog)', borderRadius: 24, padding: 24 }}>
                 <div style={{
                   fontFamily: "'IBM Plex Mono', monospace",
@@ -253,19 +266,52 @@ export default async function SkillDetailPage({
                   color: 'var(--ash)',
                   textTransform: 'uppercase' as const,
                   letterSpacing: '2px',
-                  marginBottom: 12,
+                  marginBottom: 16,
                 }}>
                   CHANGELOG
                 </div>
-                <pre style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: 12,
-                  lineHeight: 1.6,
-                  color: 'var(--shadow)',
-                  whiteSpace: 'pre-wrap',
-                  wordBreak: 'break-word',
-                  margin: 0,
-                }}>{skill.changelog}</pre>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                  {changelogEntries.map((entry, i) => (
+                    <div key={i}>
+                      {i > 0 && (
+                        <div style={{ borderTop: '1px dashed var(--smoke)', margin: '14px 0' }} />
+                      )}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                        {entry.version && (
+                          <span style={{
+                            background: '#BFF3A4',
+                            color: '#1D1C1B',
+                            borderRadius: 999,
+                            padding: '2px 8px',
+                            fontFamily: "'IBM Plex Mono', monospace",
+                            fontSize: 11,
+                            letterSpacing: '0.5px',
+                          }}>
+                            {entry.version}
+                          </span>
+                        )}
+                        {entry.date && (
+                          <span style={{
+                            fontFamily: "'IBM Plex Mono', monospace",
+                            fontSize: 11,
+                            color: 'var(--ash)',
+                          }}>
+                            {entry.date}
+                          </span>
+                        )}
+                      </div>
+                      <p style={{
+                        fontFamily: "'Milling', 'Noto Sans', sans-serif",
+                        fontSize: 13,
+                        lineHeight: 1.6,
+                        color: 'var(--shadow)',
+                        margin: 0,
+                      }}>
+                        {entry.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 
