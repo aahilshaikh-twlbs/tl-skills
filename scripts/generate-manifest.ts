@@ -1,14 +1,18 @@
 import matter from 'gray-matter';
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from 'fs';
-import { join, relative } from 'path';
+import { join, relative, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const SKILLS_DIR = join(__dirname, '..', 'skills');
 const OUTPUT_PATH = join(__dirname, '..', 'skills-manifest.json');
+
+if (!existsSync(SKILLS_DIR)) {
+  console.error(`skills/ directory not found at ${SKILLS_DIR}`);
+  process.exit(1);
+}
 
 interface SkillEntry {
   slug: string;
@@ -62,7 +66,13 @@ function generateManifest(): void {
       continue;
     }
 
-    const files = getAllFiles(skillPath, skillPath);
+    let files: string[];
+    try {
+      files = getAllFiles(skillPath, skillPath);
+    } catch (err) {
+      console.warn(`Skipping ${slug}: error reading files — ${(err as Error).message}`);
+      continue;
+    }
     const readmeExcerpt = content
       .replace(/^#+\s.+$/gm, '')
       .replace(/```[\s\S]*?```/g, '')
@@ -75,7 +85,7 @@ function generateManifest(): void {
 
     skills.push({
       slug,
-      name: data.name,
+      name: typeof data.name === 'string' ? data.name.trim() : String(data.name).trim(),
       description,
       files,
       readmeExcerpt,
