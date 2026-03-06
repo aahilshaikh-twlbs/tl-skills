@@ -1,5 +1,4 @@
 {
   "installCommand": "bun install && cd ../scripts && bun install",
-  "buildCommand": "cd .. && bun run generate && cd app && bun run build",
-  "outputDirectory": "out"
+  "buildCommand": "cd .. && bun run generate && cd app && bun run build"
 }
