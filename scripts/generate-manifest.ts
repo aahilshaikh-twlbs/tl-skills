@@ -26,6 +26,7 @@ interface SkillEntry {
   version?: string;
   updatedAt?: string;
   changelog?: string;
+  tags?: string[];
 }
 
 interface SkillManifest {
@@ -108,6 +109,9 @@ function generateManifest(): void {
     if (data.version) entry.version = coerceString(data.version);
     if (data.updated) entry.updatedAt = coerceString(data.updated);
     if (data.changelog) entry.changelog = coerceString(data.changelog);
+    if (Array.isArray(data.tags)) {
+      entry.tags = data.tags.map((t: unknown) => String(t).trim().toLowerCase());
+    }
 
     skills.push(entry);
   }

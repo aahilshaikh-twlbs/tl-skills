@@ -4,6 +4,7 @@ description: >
   TwelveLabs brand design system for on-brand HTML artifacts — reports,
   dashboards, slides, emails. Correct colors, Milling typography, spacing,
   and design language. Self-contained HTML with CDN fonts.
+tags: [brand, design, html]
 author: TwelveLabs Design
 version: 1.0.0
 updated: 2026-03-06

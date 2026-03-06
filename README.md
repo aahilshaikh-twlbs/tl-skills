@@ -1,30 +1,101 @@
 # TL Skills
 
-A curated marketplace of agent skills for TwelveLabs teams. Built on top of the open skills ecosystem.
+Curated agent skills for TwelveLabs teams. Browse, install, and contribute.
 
-## What's a skill?
+**Site:** https://tl-skills.vercel.app · **Repo:** https://github.com/aahilshaikh-twlbs/tl-skills
 
-A skill is a reusable markdown guide that extends an AI agent's capabilities. Skills live in `skills/` and follow the SKILL.md format.
+---
 
-## Install a skill
+## Quick Start
 
-Run: npx tl-skills add tl-branding
+```bash
+# Install a skill into Claude Code
+npx tl-skills add tl-branding
 
-This copies the skill files into ~/.claude/skills/ where Claude Code can find them.
+# List all available skills
+npx tl-skills list
 
-## Browse skills
+# Find skills by keyword
+npx tl-skills find "marketing"
+```
 
-Visit https://tl-skills.vercel.app to browse and discover skills.
+Skills are installed to `~/.claude/skills/` and picked up automatically by Claude Code.
 
-## Add a skill
+---
 
-1. Create a folder under skills/your-skill-name/
-2. Add a SKILL.md with frontmatter (name, description)
-3. Add any supporting reference files
-4. Open a PR — the site auto-deploys on merge
+## Repo Layout
 
-See skills/README.md for the full authoring guide.
+```
+tl-skills/
+├── skills/               ← Skill content (add new skills here)
+│   ├── README.md         ← Authoring guide
+│   ├── tl-branding/
+│   │   ├── SKILL.md
+│   │   └── references/
+│   └── …
+├── app/                  ← Next.js marketplace site (Vercel)
+│   └── README.md         ← Site dev guide
+├── cli/                  ← npx tl-skills CLI
+│   └── README.md         ← CLI dev guide
+├── scripts/
+│   └── generate-manifest.ts  ← Builds skills-manifest.json
+├── skills-manifest.json  ← Generated index (committed, used by CLI)
+└── package.json          ← Root scripts: generate, build
+```
+
+---
+
+## Adding a Skill
+
+1. Create `skills/your-skill-name/SKILL.md` — see [`skills/README.md`](skills/README.md) for the full authoring guide
+2. Run `bun run generate` from repo root to update the manifest
+3. Open a PR — the site auto-deploys on merge
+
+**Frontmatter required:**
+```yaml
+---
+name: your-skill-name
+description: >
+  Use when... (trigger conditions)
+tags: [category, another-category]
+updated: YYYY-MM-DD
+---
+```
+
+---
 
 ## Development
 
-See `app/README.md` for site setup and `cli/README.md` for CLI development.
+**Prerequisites:** [Bun](https://bun.sh)
+
+```bash
+# Generate manifest + start site
+bun run generate
+cd app && bun run dev
+
+# Regenerate manifest only
+bun run generate
+
+# Full production build
+bun run build
+```
+
+See [`app/README.md`](app/README.md) and [`cli/README.md`](cli/README.md) for per-package details.
+
+---
+
+## Available Tags
+
+| Tag | Skills |
+|-----|--------|
+| `brand` | tl-branding, tl-copywriting |
+| `design` | tl-branding |
+| `html` | tl-branding |
+| `marketing` | tl-copywriting |
+| `writing` | tl-copywriting, technical-writer |
+| `sales` | tl-sales-engineer |
+| `tl-internal` | tl-sales-engineer |
+| `productivity` | meeting-synthesizer, project-manager |
+| `meetings` | meeting-synthesizer |
+| `documentation` | technical-writer |
+| `management` | project-manager |

@@ -10,6 +10,8 @@ description: >
   competitors. Triggers on sales engineering, technical sales, demo preparation,
   proof of concept, RFP response, technical objection handling, competitive
   positioning, or deal support tasks.
+tags: [sales, tl-internal]
+updated: 2026-03-06
 ---
 
 # TwelveLabs Sales Engineer

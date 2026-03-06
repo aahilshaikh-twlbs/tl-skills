@@ -8,6 +8,8 @@ description: >
   consistent brand identity. Triggers on copywriting, marketing copy, press release,
   landing page, product announcement, blog post, brand voice, TwelveLabs content,
   or communications writing tasks.
+tags: [brand, marketing, writing]
+updated: 2026-03-06
 ---
 
 # TwelveLabs Copywriting

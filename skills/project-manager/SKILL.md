@@ -7,6 +7,8 @@ description: >
   budget tracking, team coordination, or project closure. Triggers on project
   management tasks, timeline planning, milestone tracking, dependency mapping,
   capacity planning, status reporting, change control, or delivery coordination.
+tags: [productivity, management]
+updated: 2026-03-06
 ---
 
 # Project Manager

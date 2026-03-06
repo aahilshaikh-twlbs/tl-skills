@@ -11,6 +11,7 @@ export interface SkillEntry {
   version?: string;
   updatedAt?: string;
   changelog?: string;
+  tags?: string[];
 }
 
 export interface SkillManifest {

@@ -7,6 +7,8 @@ description: >
   meeting summary requests, transcript processing, action item extraction, meeting
   minutes creation, decision documentation, or post-meeting documentation tasks.
   Integrates with Notion for output and Google Drive for source materials.
+tags: [productivity, meetings]
+updated: 2026-03-06
 ---
 
 # Meeting Synthesizer

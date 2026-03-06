@@ -18,19 +18,36 @@ export function SkillCard({ skill }: { skill: SkillEntry }) {
           gap: 12,
         }}
       >
-        <div style={{
-          display: 'inline-flex',
-          alignSelf: 'flex-start',
-          background: '#BFF3A4',
-          color: '#1D1C1B',
-          borderRadius: 999,
-          padding: '3px 10px',
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: 11,
-          textTransform: 'uppercase',
-          letterSpacing: '1px',
-        }}>
-          SKILL
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
+          {skill.tags && skill.tags.length > 0 ? skill.tags.map(tag => (
+            <span key={tag} style={{
+              display: 'inline-flex',
+              background: '#BFF3A4',
+              color: '#1D1C1B',
+              borderRadius: 999,
+              padding: '3px 10px',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: 11,
+              textTransform: 'uppercase' as const,
+              letterSpacing: '1px',
+            }}>
+              {tag}
+            </span>
+          )) : (
+            <span style={{
+              display: 'inline-flex',
+              background: '#BFF3A4',
+              color: '#1D1C1B',
+              borderRadius: 999,
+              padding: '3px 10px',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: 11,
+              textTransform: 'uppercase' as const,
+              letterSpacing: '1px',
+            }}>
+              SKILL
+            </span>
+          )}
         </div>
         <div style={{
           fontFamily: "'Milling', 'Noto Sans', sans-serif",
