@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdirSync } from 'fs';
+import { writeFileSync, readdirSync, statSync, existsSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { homedir } from 'os';
 
@@ -25,7 +25,7 @@ interface Manifest {
 async function fetchManifest(): Promise<Manifest> {
   const res = await fetch(MANIFEST_URL);
   if (!res.ok) throw new Error(`Failed to fetch manifest: ${res.status} ${res.statusText}`);
-  return res.json() as Promise<Manifest>;
+  return res.json() as unknown as Promise<Manifest>;
 }
 
 function getSkillsDir(): string {
@@ -121,24 +121,29 @@ program
   .command('list')
   .description('Show all locally installed tl skills')
   .action(() => {
-    const skillsDir = getSkillsDir();
-    if (!existsSync(skillsDir)) {
-      console.log('No skills installed yet. Run "npx tl-skills add <skill>" to get started.');
-      return;
+    try {
+      const skillsDir = getSkillsDir();
+      if (!existsSync(skillsDir)) {
+        console.log('No skills installed yet. Run "npx tl-skills add <skill>" to get started.');
+        return;
+      }
+      const installed = readdirSync(skillsDir).filter(name => {
+        const p = join(skillsDir, name);
+        return statSync(p).isDirectory() && existsSync(join(p, 'SKILL.md'));
+      });
+      if (installed.length === 0) {
+        console.log('No skills installed yet. Run "npx tl-skills add <skill>" to get started.');
+        return;
+      }
+      console.log(`\nInstalled skills (${skillsDir}):\n`);
+      for (const name of installed) {
+        console.log(`  - ${name}`);
+      }
+      console.log('');
+    } catch (err) {
+      console.error(`Error: ${(err as Error).message}`);
+      process.exit(1);
     }
-    const installed = readdirSync(skillsDir).filter(name => {
-      const p = join(skillsDir, name);
-      return statSync(p).isDirectory() && existsSync(join(p, 'SKILL.md'));
-    });
-    if (installed.length === 0) {
-      console.log('No skills installed yet. Run "npx tl-skills add <skill>" to get started.');
-      return;
-    }
-    console.log(`\nInstalled skills (${skillsDir}):\n`);
-    for (const name of installed) {
-      console.log(`  - ${name}`);
-    }
-    console.log('');
   });
 
 // update [skill-name]
@@ -172,6 +177,7 @@ program
           continue;
         }
         console.log(`Updating ${skill.name}...`);
+        ensureDir(join(skillsDir, slug));
         for (const file of skill.files) {
           const url = `${RAW_BASE}/${skill.slug}/${file}`;
           const res = await fetch(url);
