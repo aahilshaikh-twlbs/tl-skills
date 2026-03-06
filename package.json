@@ -1,0 +1,9 @@
+{
+  "name": "tl-skills",
+  "private": true,
+  "scripts": {
+    "generate": "bun run scripts/generate-manifest.ts",
+    "dev": "cd app && bun run dev",
+    "build": "bun run generate && cd app && bun run build"
+  }
+}

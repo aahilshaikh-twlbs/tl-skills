@@ -1,0 +1,11 @@
+{
+  "name": "tl-skills-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.5"
+  }
+}
