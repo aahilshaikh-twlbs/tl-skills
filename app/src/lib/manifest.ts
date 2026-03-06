@@ -1,4 +1,4 @@
-import manifestData from '../../../skills-manifest.json';
+import manifestData from '../../skills-manifest.json';
 
 export interface SkillEntry {
   slug: string;
