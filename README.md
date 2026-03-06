@@ -27,4 +27,4 @@ See skills/README.md for the full authoring guide.
 
 ## Development
 
-See `app/README.md` for site setup and `cli/README.md` for CLI development. (These are created in the next setup steps.)
+See `app/README.md` for site setup and `cli/README.md` for CLI development.
