@@ -7,6 +7,10 @@ export interface SkillEntry {
   files: string[];
   readmeExcerpt: string;
   content: string;
+  author?: string;
+  version?: string;
+  updatedAt?: string;
+  changelog?: string;
 }
 
 export interface SkillManifest {

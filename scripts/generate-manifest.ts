@@ -21,6 +21,11 @@ interface SkillEntry {
   files: string[];
   readmeExcerpt: string;
   content: string;
+  // Optional metadata
+  author?: string;
+  version?: string;
+  updatedAt?: string;
+  changelog?: string;
 }
 
 interface SkillManifest {
@@ -39,6 +44,15 @@ function getAllFiles(dir: string, base: string): string[] {
     }
   }
   return files;
+}
+
+function coerceString(val: unknown): string | undefined {
+  if (val === undefined || val === null) return undefined;
+  if (val instanceof Date) {
+    // Format as YYYY-MM-DD
+    return val.toISOString().slice(0, 10);
+  }
+  return typeof val === 'string' ? val.trim() : String(val).trim();
 }
 
 function generateManifest(): void {
@@ -73,24 +87,29 @@ function generateManifest(): void {
       console.warn(`Skipping ${slug}: error reading files — ${(err as Error).message}`);
       continue;
     }
+
     const readmeExcerpt = content
       .replace(/^#+\s.+$/gm, '')
       .replace(/```[\s\S]*?```/g, '')
       .trim()
       .slice(0, 200);
 
-    const description = typeof data.description === 'string'
-      ? data.description.trim()
-      : String(data.description).trim();
-
-    skills.push({
+    const entry: SkillEntry = {
       slug,
       name: typeof data.name === 'string' ? data.name.trim() : String(data.name).trim(),
-      description,
+      description: typeof data.description === 'string' ? data.description.trim() : String(data.description).trim(),
       files,
       readmeExcerpt,
       content,
-    });
+    };
+
+    // Optional metadata fields
+    if (data.author) entry.author = coerceString(data.author);
+    if (data.version) entry.version = coerceString(data.version);
+    if (data.updated) entry.updatedAt = coerceString(data.updated);
+    if (data.changelog) entry.changelog = coerceString(data.changelog);
+
+    skills.push(entry);
   }
 
   const manifest: SkillManifest = {

@@ -13,12 +13,11 @@ export function SearchBar({ value, onChange }: { value: string; onChange: (v: st
         padding: '12px 20px',
         fontSize: 16,
         fontFamily: "'Milling', 'Noto Sans', sans-serif",
-        color: '#1D1C1B',
-        background: '#FFFFFF',
-        border: 'none',
+        color: 'var(--charcoal)',
+        background: 'var(--fog)',
+        border: '1px solid var(--smoke)',
         borderRadius: 12,
         outline: 'none',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
       }}
     />
   );

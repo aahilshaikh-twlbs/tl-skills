@@ -73,13 +73,103 @@ export default async function SkillDetailPage({
           </h1>
           <p style={{
             fontFamily: "'Milling', 'Noto Sans', sans-serif",
-            fontSize: 16,
+            fontSize: 19,
             color: 'var(--ash)',
-            lineHeight: 1.5,
+            lineHeight: 1.6,
           }}>
             {skill.description}
           </p>
         </div>
+
+        {/* Metadata */}
+        {(skill.author || skill.version || skill.updatedAt || skill.changelog) && (
+          <div style={{ background: 'var(--fog)', borderRadius: 24, padding: 24, marginBottom: 24 }}>
+            <div style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: 11,
+              color: 'var(--ash)',
+              textTransform: 'uppercase' as const,
+              letterSpacing: '2px',
+              marginBottom: 16,
+            }}>
+              ABOUT
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 24 }}>
+              {skill.author && (
+                <div>
+                  <div style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: 10,
+                    color: 'var(--ash)',
+                    textTransform: 'uppercase' as const,
+                    letterSpacing: '1.5px',
+                    marginBottom: 4,
+                  }}>Author</div>
+                  <div style={{
+                    fontFamily: "'Milling', 'Noto Sans', sans-serif",
+                    fontSize: 14,
+                    color: 'var(--charcoal)',
+                  }}>{skill.author}</div>
+                </div>
+              )}
+              {skill.version && (
+                <div>
+                  <div style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: 10,
+                    color: 'var(--ash)',
+                    textTransform: 'uppercase' as const,
+                    letterSpacing: '1.5px',
+                    marginBottom: 4,
+                  }}>Version</div>
+                  <div style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: 13,
+                    color: 'var(--charcoal)',
+                  }}>v{skill.version}</div>
+                </div>
+              )}
+              {skill.updatedAt && (
+                <div>
+                  <div style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: 10,
+                    color: 'var(--ash)',
+                    textTransform: 'uppercase' as const,
+                    letterSpacing: '1.5px',
+                    marginBottom: 4,
+                  }}>Last Updated</div>
+                  <div style={{
+                    fontFamily: "'Milling', 'Noto Sans', sans-serif",
+                    fontSize: 14,
+                    color: 'var(--charcoal)',
+                  }}>{skill.updatedAt}</div>
+                </div>
+              )}
+            </div>
+            {skill.changelog && (
+              <div style={{ marginTop: 20, paddingTop: 20, borderTop: '1px dashed var(--smoke)' }}>
+                <div style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: 10,
+                  color: 'var(--ash)',
+                  textTransform: 'uppercase' as const,
+                  letterSpacing: '1.5px',
+                  marginBottom: 8,
+                }}>Changelog</div>
+                <pre style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: 12,
+                  lineHeight: 1.6,
+                  color: 'var(--shadow)',
+                  whiteSpace: 'pre-wrap',
+                  wordBreak: 'break-word',
+                  margin: 0,
+                }}>{skill.changelog}</pre>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Install command */}
         <div style={{
