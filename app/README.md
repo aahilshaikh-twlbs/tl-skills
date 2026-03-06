@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TL Skills — Web App
 
-## Getting Started
+The Next.js site for the TL Skills marketplace. Statically generated, deployed on Vercel.
 
-First, run the development server:
+## Local Development
+
+Prerequisites: [Bun](https://bun.sh) installed.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# From repo root — generate the manifest first
+bun run generate
+
+# Start the dev server
+cd app && bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Adding a Skill
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Skills live in `../skills/`. To add one:
 
-## Learn More
+1. Create `skills/your-skill-name/SKILL.md`
+2. Run `bun run generate` from repo root
+3. The site picks it up automatically on next build
 
-To learn more about Next.js, take a look at the following resources:
+## Build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# From repo root
+bun run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This runs `generate` then `next build`. Output goes to `app/out/`.
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Connected to Vercel. Every push to `main` triggers a new deploy automatically.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Build command: `bun run generate && cd app && bun run build`
+Output directory: `app/out`
+
+## Tech
+
+- Next.js 15+ (App Router, static export)
+- TypeScript, strict mode
+- Bun package manager
+- TL brand system (inline CSS, Milling font via CDN)
+- No Tailwind, no CSS framework
