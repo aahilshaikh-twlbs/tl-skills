@@ -62,7 +62,7 @@ function generateManifest(): void {
       continue;
     }
 
-    const files = getAllFiles(skillPath, SKILLS_DIR);
+    const files = getAllFiles(skillPath, skillPath);
     const readmeExcerpt = content
       .replace(/^#+\s.+$/gm, '')
       .replace(/```[\s\S]*?```/g, '')
