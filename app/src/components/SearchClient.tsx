@@ -8,12 +8,30 @@ type SortKey = 'az' | 'za' | 'updated';
 
 const SORT_LABELS: Record<SortKey, string> = { az: 'A → Z', za: 'Z → A', updated: 'Updated' };
 
+const selectStyle: React.CSSProperties = {
+  fontFamily: "'IBM Plex Mono', monospace",
+  fontSize: 12,
+  color: 'var(--charcoal)',
+  background: 'var(--fog)',
+  border: '1px solid var(--smoke)',
+  borderRadius: 10,
+  padding: '10px 14px',
+  cursor: 'pointer',
+  outline: 'none',
+  appearance: 'none' as const,
+  WebkitAppearance: 'none' as const,
+  backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238F8984' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'right 10px center',
+  paddingRight: 28,
+  minWidth: 110,
+};
+
 export function SearchClient({ skills }: { skills: SkillEntry[] }) {
   const [query, setQuery] = useState('');
-  const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [activeTag, setActiveTag] = useState('');
   const [sort, setSort] = useState<SortKey>('az');
 
-  // Collect all unique tags sorted alphabetically
   const allTags = useMemo(() => {
     const set = new Set<string>();
     skills.forEach(s => s.tags?.forEach(t => set.add(t)));
@@ -47,93 +65,39 @@ export function SearchClient({ skills }: { skills: SkillEntry[] }) {
   return (
     <>
       {/* Controls row */}
-      <div style={{ padding: '24px 24px 0', display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {/* Search + count */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' as const }}>
-          <SearchBar value={query} onChange={setQuery} />
-          <span style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: 12,
-            color: 'var(--ash)',
-            textTransform: 'uppercase' as const,
-            letterSpacing: '1px',
-            whiteSpace: 'nowrap' as const,
-          }}>
-            {filtered.length} skill{filtered.length !== 1 ? 's' : ''}
-          </span>
-        </div>
+      <div style={{
+        padding: '24px 24px 16px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+        flexWrap: 'wrap' as const,
+      }}>
+        <SearchBar value={query} onChange={setQuery} />
 
-        {/* Tag filters + sort */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' as const }}>
-          {/* Tag chips */}
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
-            <button
-              onClick={() => setActiveTag(null)}
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: 11,
-                borderRadius: 999,
-                padding: '4px 12px',
-                border: 'none',
-                cursor: 'pointer',
-                background: activeTag === null ? 'var(--charcoal)' : 'var(--fog)',
-                color: activeTag === null ? 'var(--chalk)' : 'var(--ash)',
-                textTransform: 'uppercase' as const,
-                letterSpacing: '0.5px',
-                transition: 'background 0.15s, color 0.15s',
-              }}
-            >
-              All
-            </button>
-            {allTags.map(tag => (
-              <button
-                key={tag}
-                onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: 11,
-                  borderRadius: 999,
-                  padding: '4px 12px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: activeTag === tag ? '#BFF3A4' : 'var(--fog)',
-                  color: activeTag === tag ? '#1D1C1B' : 'var(--ash)',
-                  textTransform: 'uppercase' as const,
-                  letterSpacing: '0.5px',
-                  transition: 'background 0.15s, color 0.15s',
-                }}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
+        <select value={activeTag} onChange={e => setActiveTag(e.target.value)} style={selectStyle}>
+          <option value="">All Tags</option>
+          {allTags.map(tag => (
+            <option key={tag} value={tag}>{tag.charAt(0).toUpperCase() + tag.slice(1)}</option>
+          ))}
+        </select>
 
-          {/* Sort pills */}
-          <div style={{ display: 'flex', gap: 4 }}>
-            {(Object.keys(SORT_LABELS) as SortKey[]).map(key => (
-              <button
-                key={key}
-                onClick={() => setSort(key)}
-                style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: 11,
-                  borderRadius: 8,
-                  padding: '4px 10px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: sort === key ? 'var(--charcoal)' : 'var(--fog)',
-                  color: sort === key ? 'var(--chalk)' : 'var(--ash)',
-                  textTransform: 'uppercase' as const,
-                  letterSpacing: '0.5px',
-                  transition: 'background 0.15s, color 0.15s',
-                  whiteSpace: 'nowrap' as const,
-                }}
-              >
-                {SORT_LABELS[key]}
-              </button>
-            ))}
-          </div>
-        </div>
+        <select value={sort} onChange={e => setSort(e.target.value as SortKey)} style={selectStyle}>
+          {(Object.entries(SORT_LABELS) as [SortKey, string][]).map(([key, label]) => (
+            <option key={key} value={key}>{label}</option>
+          ))}
+        </select>
+
+        <span style={{
+          fontFamily: "'IBM Plex Mono', monospace",
+          fontSize: 12,
+          color: 'var(--ash)',
+          textTransform: 'uppercase' as const,
+          letterSpacing: '1px',
+          whiteSpace: 'nowrap' as const,
+          marginLeft: 4,
+        }}>
+          {filtered.length} skill{filtered.length !== 1 ? 's' : ''}
+        </span>
       </div>
 
       {/* Grid */}
@@ -141,7 +105,7 @@ export function SearchClient({ skills }: { skills: SkillEntry[] }) {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
         gap: 16,
-        padding: '16px 24px 48px',
+        padding: '0 24px 48px',
       }}>
         {filtered.map(skill => (
           <SkillCard key={skill.slug} skill={skill} />

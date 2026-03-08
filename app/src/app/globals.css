@@ -52,6 +52,12 @@ body {
   transition: background 0.2s, color 0.2s;
 }
 
+/* Native select dark mode fix */
+select option {
+  background: var(--fog);
+  color: var(--charcoal);
+}
+
 /* Detail page two-col grid */
 .detail-grid {
   display: grid;
