@@ -20,8 +20,10 @@ export default function HomePage() {
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <Logo width={160} color="#F4F3F3" />
-          <LanguageToggle />
-          <ThemeToggle />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
         <div style={{ marginTop: 32 }}>
           <h1 style={{

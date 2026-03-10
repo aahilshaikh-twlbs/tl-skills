@@ -50,10 +50,10 @@ export default async function SkillDetailPage({
         margin: '0 auto',
       }}>
         <Logo width={120} color="var(--charcoal)" />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <LanguageToggle />
           <ThemeToggle />
-          <Link href="/" style={{
+          <Link href="/" style={{ marginLeft: 8,
             fontFamily: "'IBM Plex Mono', monospace",
             fontSize: 13,
             color: 'var(--ash)',
