@@ -9,6 +9,11 @@ description: >
   landing page, product announcement, blog post, brand voice, TwelveLabs content,
   or communications writing tasks.
 tags: [brand, marketing, writing]
+name_ko: TL 카피라이팅
+description_ko: >
+  TwelveLabs 브랜드 보이스로 마케팅 및 커뮤니케이션 카피를 작성합니다.
+  보도자료, 랜딩 페이지, 제품 공지, 블로그 포스트, 소셜 미디어, 이메일 캠페인 등
+  TwelveLabs의 모든 마케팅 콘텐츠 작성 시 활용하세요.
 updated: 2026-03-06
 ---
 

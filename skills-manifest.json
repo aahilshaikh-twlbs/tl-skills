@@ -1,5 +1,5 @@
 {
-  "generated": "2026-03-06T21:28:04.113Z",
+  "generated": "2026-03-10T00:13:55.377Z",
   "skills": [
     {
       "slug": "meeting-synthesizer",
@@ -14,7 +14,9 @@
       "tags": [
         "productivity",
         "meetings"
-      ]
+      ],
+      "nameKo": "회의 요약",
+      "descriptionKo": "회의 메모, 녹취록, 녹화를 결정사항, 액션 아이템, 후속 조치가 포함된 실행 가능한 요약으로 변환합니다. Zoom, Google Meet, Granola, Avoma 또는 메모로 작성된 모든 회의 콘텐츠 처리 시 활용하세요."
     },
     {
       "slug": "project-manager",
@@ -29,7 +31,9 @@
       "tags": [
         "productivity",
         "management"
-      ]
+      ],
+      "nameKo": "프로젝트 매니저",
+      "descriptionKo": "프로젝트 기획, 실행, 납품 전문 프로젝트 매니저. 프로젝트 계획, 헌장 개발, WBS 작성, 일정 관리, 리소스 배분, 리스크 완화, 이해관계자 소통, 예산 추적 시 활용하세요."
     },
     {
       "slug": "technical-writer",
@@ -44,7 +48,9 @@
       "tags": [
         "documentation",
         "writing"
-      ]
+      ],
+      "nameKo": "기술 문서 작가",
+      "descriptionKo": "명확하고 정확한 문서 제작 전문 기술 문서 작가. API 문서, 사용자 가이드, 튜토리얼, SDK 문서, 통합 가이드, 문제 해결 콘텐츠 등 모든 기술 문서 작성 시 활용하세요."
     },
     {
       "slug": "tl-branding",
@@ -63,7 +69,9 @@
         "brand",
         "design",
         "html"
-      ]
+      ],
+      "nameKo": "TL 브랜딩",
+      "descriptionKo": "보고서, 대시보드, 슬라이드, 이메일 등 온브랜드 HTML 결과물 제작을 위한 TwelveLabs 브랜드 디자인 시스템. 올바른 색상, Milling 타이포그래피, 여백 및 디자인 언어를 적용합니다. CDN 폰트를 포함한 완전한 독립형 HTML."
     },
     {
       "slug": "tl-copywriting",
@@ -79,7 +87,9 @@
         "brand",
         "marketing",
         "writing"
-      ]
+      ],
+      "nameKo": "TL 카피라이팅",
+      "descriptionKo": "TwelveLabs 브랜드 보이스로 마케팅 및 커뮤니케이션 카피를 작성합니다. 보도자료, 랜딩 페이지, 제품 공지, 블로그 포스트, 소셜 미디어, 이메일 캠페인 등 TwelveLabs의 모든 마케팅 콘텐츠 작성 시 활용하세요."
     },
     {
       "slug": "tl-sales-engineer",
@@ -94,7 +104,9 @@
       "tags": [
         "sales",
         "tl-internal"
-      ]
+      ],
+      "nameKo": "TL 세일즈 엔지니어",
+      "descriptionKo": "TwelveLabs 비디오 AI 플랫폼 전담 세일즈 엔지니어. 기술 영업, 솔루션 아키텍처, POC 제공, 경쟁 포지셔닝 전문. 데모 준비, POC 구축, RFP/RFI 대응, 기술 이의 처리, 고객 발굴, 통합 아키텍처 설계 시 활용하세요."
     }
   ]
 }

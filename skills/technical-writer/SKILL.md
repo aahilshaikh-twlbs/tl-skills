@@ -8,6 +8,11 @@ description: >
   changelog generation, developer docs, admin manuals, or making complex technical
   information accessible to diverse audiences.
 tags: [documentation, writing]
+name_ko: 기술 문서 작가
+description_ko: >
+  명확하고 정확한 문서 제작 전문 기술 문서 작가. API 문서, 사용자 가이드,
+  튜토리얼, SDK 문서, 통합 가이드, 문제 해결 콘텐츠 등 모든 기술 문서
+  작성 시 활용하세요.
 updated: 2026-03-06
 ---
 

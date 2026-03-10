@@ -5,6 +5,11 @@ description: >
   dashboards, slides, emails. Correct colors, Milling typography, spacing,
   and design language. Self-contained HTML with CDN fonts.
 tags: [brand, design, html]
+name_ko: TL 브랜딩
+description_ko: >
+  보고서, 대시보드, 슬라이드, 이메일 등 온브랜드 HTML 결과물 제작을 위한
+  TwelveLabs 브랜드 디자인 시스템. 올바른 색상, Milling 타이포그래피, 여백 및
+  디자인 언어를 적용합니다. CDN 폰트를 포함한 완전한 독립형 HTML.
 author: TwelveLabs Design
 version: 1.0.0
 updated: 2026-03-06

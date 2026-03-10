@@ -8,6 +8,11 @@ description: >
   minutes creation, decision documentation, or post-meeting documentation tasks.
   Integrates with Notion for output and Google Drive for source materials.
 tags: [productivity, meetings]
+name_ko: 회의 요약
+description_ko: >
+  회의 메모, 녹취록, 녹화를 결정사항, 액션 아이템, 후속 조치가 포함된 실행 가능한
+  요약으로 변환합니다. Zoom, Google Meet, Granola, Avoma 또는 메모로 작성된
+  모든 회의 콘텐츠 처리 시 활용하세요.
 updated: 2026-03-06
 ---
 

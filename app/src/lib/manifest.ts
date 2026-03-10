@@ -12,6 +12,8 @@ export interface SkillEntry {
   updatedAt?: string;
   changelog?: string;
   tags?: string[];
+  nameKo?: string;
+  descriptionKo?: string;
 }
 
 export interface SkillManifest {

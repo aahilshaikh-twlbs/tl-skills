@@ -1,8 +1,13 @@
 'use client';
 import Link from 'next/link';
 import type { SkillEntry } from '@/lib/manifest';
+import { useLang } from '@/context/LanguageContext';
 
 export function SkillCard({ skill }: { skill: SkillEntry }) {
+  const { lang } = useLang();
+  const name = lang === 'ko' && skill.nameKo ? skill.nameKo : skill.name;
+  const description = lang === 'ko' && skill.descriptionKo ? skill.descriptionKo : skill.description;
+
   return (
     <Link href={`/skills/${skill.slug}`}>
       <div
@@ -55,7 +60,7 @@ export function SkillCard({ skill }: { skill: SkillEntry }) {
           fontWeight: 700,
           color: 'var(--charcoal)',
         }}>
-          {skill.name}
+          {name}
         </div>
         <div style={{
           fontFamily: "'Milling', 'Noto Sans', sans-serif",
@@ -64,9 +69,9 @@ export function SkillCard({ skill }: { skill: SkillEntry }) {
           lineHeight: 1.5,
           flex: 1,
         }}>
-          {skill.description.length > 120
-            ? skill.description.slice(0, 120) + '...'
-            : skill.description}
+          {description.length > 120
+            ? description.slice(0, 120) + '...'
+            : description}
         </div>
         <div style={{
           fontFamily: "'IBM Plex Mono', monospace",

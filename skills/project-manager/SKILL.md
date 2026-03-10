@@ -8,6 +8,11 @@ description: >
   management tasks, timeline planning, milestone tracking, dependency mapping,
   capacity planning, status reporting, change control, or delivery coordination.
 tags: [productivity, management]
+name_ko: 프로젝트 매니저
+description_ko: >
+  프로젝트 기획, 실행, 납품 전문 프로젝트 매니저. 프로젝트 계획, 헌장 개발,
+  WBS 작성, 일정 관리, 리소스 배분, 리스크 완화, 이해관계자 소통,
+  예산 추적 시 활용하세요.
 updated: 2026-03-06
 ---
 

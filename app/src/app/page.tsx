@@ -2,6 +2,7 @@ import { getManifest } from '@/lib/manifest';
 import { Logo } from '@/components/Logo';
 import { SearchClient } from '@/components/SearchClient';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { LanguageToggle } from '@/components/LanguageToggle';
 
 export default function HomePage() {
   const { skills } = getManifest();
@@ -19,6 +20,7 @@ export default function HomePage() {
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <Logo width={160} color="#F4F3F3" />
+          <LanguageToggle />
           <ThemeToggle />
         </div>
         <div style={{ marginTop: 32 }}>

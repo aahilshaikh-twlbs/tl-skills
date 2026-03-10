@@ -27,6 +27,8 @@ interface SkillEntry {
   updatedAt?: string;
   changelog?: string;
   tags?: string[];
+  nameKo?: string;
+  descriptionKo?: string;
 }
 
 interface SkillManifest {
@@ -112,6 +114,8 @@ function generateManifest(): void {
     if (Array.isArray(data.tags)) {
       entry.tags = data.tags.map((t: unknown) => String(t).trim().toLowerCase());
     }
+    if (data.name_ko) entry.nameKo = coerceString(data.name_ko);
+    if (data.description_ko) entry.descriptionKo = coerceString(data.description_ko);
 
     skills.push(entry);
   }

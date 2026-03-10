@@ -11,6 +11,11 @@ description: >
   proof of concept, RFP response, technical objection handling, competitive
   positioning, or deal support tasks.
 tags: [sales, tl-internal]
+name_ko: TL 세일즈 엔지니어
+description_ko: >
+  TwelveLabs 비디오 AI 플랫폼 전담 세일즈 엔지니어. 기술 영업, 솔루션 아키텍처,
+  POC 제공, 경쟁 포지셔닝 전문. 데모 준비, POC 구축, RFP/RFI 대응,
+  기술 이의 처리, 고객 발굴, 통합 아키텍처 설계 시 활용하세요.
 updated: 2026-03-06
 ---
 
