@@ -47,7 +47,8 @@ export default function HomePage() {
             </p>
             <a href="/submit" style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
-              background: '#60E21B', color: '#1D1C1B',
+              background: 'transparent', color: '#F4F3F3',
+              border: '1px solid rgba(244,243,243,0.3)',
               borderRadius: 10, padding: '8px 18px',
               fontFamily: "'Milling', 'Noto Sans', sans-serif",
               fontSize: 14, fontWeight: 700,
