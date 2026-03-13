@@ -36,27 +36,14 @@ export default function HomePage() {
           }}>
             Skills Marketplace
           </h1>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 16, flexWrap: 'wrap' }}>
-            <p style={{
-              fontFamily: "'Milling', 'Noto Sans', sans-serif",
-              fontSize: 20,
-              color: '#9B9895',
-              margin: 0,
-            }}>
-              Curated agent skills for TwelveLabs teams.
-            </p>
-            <a href="/submit" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-              background: 'transparent', color: '#F4F3F3',
-              border: '1px solid rgba(244,243,243,0.3)',
-              borderRadius: 10, padding: '8px 18px',
-              fontFamily: "'Milling', 'Noto Sans', sans-serif",
-              fontSize: 14, fontWeight: 700,
-              whiteSpace: 'nowrap',
-            }}>
-              + Submit a Skill
-            </a>
-          </div>
+          <p style={{
+            fontFamily: "'Milling', 'Noto Sans', sans-serif",
+            fontSize: 20,
+            color: '#9B9895',
+            marginTop: 12,
+          }}>
+            Curated agent skills for TwelveLabs teams.
+          </p>
         </div>
         {/* Masterbrand gradient accent bar */}
         <div style={{

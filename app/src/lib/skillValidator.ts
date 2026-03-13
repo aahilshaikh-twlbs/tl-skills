@@ -25,8 +25,8 @@ export function validateSkill(data: SkillFormData): ValidationResult {
       passed: data.description.length > 0 && data.description.length <= 1024,
     },
     {
-      label: 'Overview is filled in',
-      passed: data.overview.trim().length > 40,
+      label: 'Skill description is filled in',
+      passed: data.overview.trim().length > 0,
     },
     {
       label: 'Name provided',

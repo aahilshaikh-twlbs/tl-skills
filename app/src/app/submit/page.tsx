@@ -206,11 +206,39 @@ export default function SubmitPage() {
           </div>
         </div>
 
-        {/* Error */}
+        {/* Validation errors — shown once user starts filling in the form */}
+        {(form.slug || form.description || form.overview) && checks.some(c => !c.passed) && (
+          <div style={{
+            background: '#FFF0F0', border: '1px solid #FFCCC0',
+            borderRadius: 12, padding: '16px 20px', marginBottom: 16,
+            display: 'flex', flexDirection: 'column', gap: 10,
+          }}>
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: '#8B0000', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              Fix before submitting
+            </span>
+            {checks.filter(c => !c.passed).map((c, i) => (
+              <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                <span style={{
+                  width: 6, height: 6, borderRadius: '50%',
+                  background: '#CC3300', flexShrink: 0,
+                }} />
+                <span style={{ fontFamily: "'Milling', sans-serif", fontSize: 14, color: '#8B0000' }}>
+                  {c.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* API error */}
         {error && (
-          <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, color: '#8B0000', marginBottom: 16 }}>
+          <div style={{
+            background: '#FFF0F0', border: '1px solid #FFCCC0',
+            borderRadius: 12, padding: '14px 20px', marginBottom: 16,
+            fontFamily: "'Milling', sans-serif", fontSize: 14, color: '#8B0000',
+          }}>
             ⚠ {error}
-          </p>
+          </div>
         )}
 
         {/* Actions */}
@@ -235,25 +263,6 @@ export default function SubmitPage() {
             {submitting ? 'Opening PR…' : 'Submit Skill →'}
           </button>
         </div>
-
-        {/* Inline validation — only show once user has started filling */}
-        {(form.slug || form.description || form.overview) && (
-          <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 6 }}>
-            {checks.filter(c => !c.passed).map((c, i) => (
-              <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                <span style={{
-                  background: '#FFD5D5', color: '#8B0000',
-                  borderRadius: 999, padding: '2px 8px',
-                  fontFamily: "'IBM Plex Mono', monospace", fontSize: 10,
-                  textTransform: 'uppercase',
-                }}>fix</span>
-                <span style={{ fontFamily: "'Milling', sans-serif", fontSize: 13, color: 'var(--ash)' }}>
-                  {c.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
       </form>
     </div>
   );

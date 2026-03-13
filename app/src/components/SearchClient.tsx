@@ -95,9 +95,21 @@ export function SearchClient({ skills }: { skills: SkillEntry[] }) {
           letterSpacing: '1px',
           whiteSpace: 'nowrap' as const,
           marginLeft: 4,
+          flex: 1,
         }}>
           {filtered.length} skill{filtered.length !== 1 ? 's' : ''}
         </span>
+
+        <a href="/submit" style={{
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+          background: '#1D1C1B', color: '#F4F3F3',
+          border: 'none', borderRadius: 10, padding: '10px 18px',
+          fontFamily: "'Milling', 'Noto Sans', sans-serif",
+          fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' as const,
+          cursor: 'pointer',
+        }}>
+          + Submit a Skill
+        </a>
       </div>
 
       {/* Grid */}
