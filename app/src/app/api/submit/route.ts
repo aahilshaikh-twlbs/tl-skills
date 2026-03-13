@@ -2,21 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import type { SkillFormData } from '@/lib/skillAssembler';
 import { assembleSkillMd, assemblePrBody } from '@/lib/skillAssembler';
 
-const OWNER = process.env.GITHUB_REPO_OWNER!;
-const REPO = process.env.GITHUB_REPO_NAME!;
-const PAT = process.env.GITHUB_PAT!;
-
-const GH_HEADERS = {
-  Authorization: `Bearer ${PAT}`,
-  'Content-Type': 'application/json',
-  'X-GitHub-Api-Version': '2022-11-28',
-  'User-Agent': 'tl-skills-marketplace',
-};
-
-async function gh(path: string, options?: RequestInit) {
+async function gh(path: string, pat: string, options?: RequestInit) {
   const res = await fetch(`https://api.github.com${path}`, {
     ...options,
-    headers: { ...GH_HEADERS, ...(options?.headers ?? {}) },
+    headers: {
+      Authorization: `Bearer ${pat}`,
+      'Content-Type': 'application/json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'User-Agent': 'tl-skills-marketplace',
+      ...(options?.headers ?? {}),
+    },
   });
   if (!res.ok) {
     const body = await res.text();
@@ -27,6 +22,14 @@ async function gh(path: string, options?: RequestInit) {
 
 export async function POST(req: NextRequest) {
   try {
+    const OWNER = process.env.GITHUB_REPO_OWNER;
+    const REPO = process.env.GITHUB_REPO_NAME;
+    const PAT = process.env.GITHUB_PAT;
+
+    if (!OWNER || !REPO || !PAT) {
+      throw new Error('GitHub integration is not configured (missing env vars)');
+    }
+
     const data: SkillFormData = await req.json();
 
     // Basic server-side guard
@@ -40,18 +43,18 @@ export async function POST(req: NextRequest) {
     const filePath = `skills/${data.slug}/SKILL.md`;
 
     // 1. Get latest main SHA
-    const ref = await gh(`/repos/${OWNER}/${REPO}/git/ref/heads/main`);
+    const ref = await gh(`/repos/${OWNER}/${REPO}/git/ref/heads/main`, PAT);
     const sha: string = ref.object.sha;
 
     // 2. Create branch
-    await gh(`/repos/${OWNER}/${REPO}/git/refs`, {
+    await gh(`/repos/${OWNER}/${REPO}/git/refs`, PAT, {
       method: 'POST',
       body: JSON.stringify({ ref: `refs/heads/${branchName}`, sha }),
     });
 
     // 3. Create SKILL.md file on branch
     const content = Buffer.from(skillMd, 'utf-8').toString('base64');
-    await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}`, {
+    await gh(`/repos/${OWNER}/${REPO}/contents/${filePath}`, PAT, {
       method: 'PUT',
       body: JSON.stringify({
         message: `feat: add ${data.slug} skill (community submission)`,
@@ -61,7 +64,7 @@ export async function POST(req: NextRequest) {
     });
 
     // 4. Open PR
-    const pr = await gh(`/repos/${OWNER}/${REPO}/pulls`, {
+    const pr = await gh(`/repos/${OWNER}/${REPO}/pulls`, PAT, {
       method: 'POST',
       body: JSON.stringify({
         title: `feat: add \`${data.slug}\` skill`,

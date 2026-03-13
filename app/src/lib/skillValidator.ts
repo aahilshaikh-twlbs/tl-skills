@@ -17,16 +17,12 @@ export function validateSkill(data: SkillFormData): ValidationResult {
       passed: /^[a-z][a-z0-9-]*$/.test(data.slug) && !data.slug.endsWith('-'),
     },
     {
-      label: 'Trigger starts with "Use when..."',
+      label: 'Description starts with "Use when..."',
       passed: data.description.toLowerCase().startsWith('use when'),
     },
     {
-      label: `Trigger under 1024 characters (${data.description.length})`,
+      label: `Description under 1024 characters (${data.description.length})`,
       passed: data.description.length > 0 && data.description.length <= 1024,
-    },
-    {
-      label: 'Skill description is filled in',
-      passed: data.overview.trim().length > 0,
     },
     {
       label: 'Name provided',

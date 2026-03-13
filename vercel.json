@@ -1,0 +1,6 @@
+{
+  "rootDirectory": "app",
+  "buildCommand": "cd ../scripts && npm install && npx tsx generate-manifest.ts && cd ../app && npm run build",
+  "installCommand": "npm install",
+  "framework": "nextjs"
+}

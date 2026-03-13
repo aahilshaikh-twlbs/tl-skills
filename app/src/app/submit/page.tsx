@@ -43,7 +43,6 @@ export default function SubmitPage() {
     submitterGithub: '',
     slug: '',
     description: '',
-    overview: '',
     tags: [],
   });
   const [submitting, setSubmitting] = useState(false);
@@ -159,28 +158,17 @@ export default function SubmitPage() {
           </div>
 
           <div style={{ marginBottom: 20 }}>
-            <label style={labelStyle}>When to use it * ({form.description.length}/1024)</label>
+            <label style={labelStyle}>Describe the skill * ({form.description.length}/1024)</label>
             <textarea
-              style={{ ...inputStyle, minHeight: 80, resize: 'vertical' }}
+              style={{ ...inputStyle, minHeight: 160, resize: 'vertical' }}
               value={form.description}
-              placeholder="Use when you need to..."
+              placeholder={'Use when you need to...\n\nWhat does it do? How does it work? What does the output look like?'}
               onChange={e => set('description', e.target.value)}
               required
             />
             {form.description && !descOk && (
               <span style={{ ...hintStyle, color: '#8B0000' }}>Must start with "Use when"</span>
             )}
-          </div>
-
-          <div style={{ marginBottom: 20 }}>
-            <label style={labelStyle}>Describe the skill *</label>
-            <textarea
-              style={{ ...inputStyle, minHeight: 140, resize: 'vertical' }}
-              value={form.overview}
-              placeholder="What does this skill do? How does it work? What does the output look like? Any tools or platforms it uses?"
-              onChange={e => set('overview', e.target.value)}
-              required
-            />
           </div>
 
           <div>

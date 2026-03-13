@@ -3,8 +3,7 @@ export interface SkillFormData {
   submitterEmail: string;
   submitterGithub: string;
   slug: string;
-  description: string; // "Use when..." trigger
-  overview: string;    // free-form: what it does, how it works, example output
+  description: string; // "Use when..." — both the trigger and the skill body
   tags: string[];
 }
 
@@ -26,7 +25,7 @@ updated: ${today}
 
 # ${displayName}
 
-${data.overview.trim()}
+${data.description.trim()}
 `;
 }
 
@@ -40,11 +39,8 @@ export function assemblePrBody(data: SkillFormData, skillMdContent: string): str
 **Email:** ${data.submitterEmail}
 **Tags:** ${data.tags.join(', ') || 'none'}
 
-### Trigger condition
+### Description
 ${data.description}
-
-### Overview
-${data.overview}
 
 ---
 
