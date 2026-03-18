@@ -12,9 +12,9 @@ export async function POST(req: NextRequest) {
   const res = NextResponse.json({ ok: true });
   res.cookies.set('tl-auth', 'ok', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: true,
     sameSite: 'lax',
-    maxAge: 60 * 60 * 24 * 7, // 7 days
+    maxAge: 4 * 60 * 60, // 4 hours, refreshed on each request while active
     path: '/',
   });
   return res;
