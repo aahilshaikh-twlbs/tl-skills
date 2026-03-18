@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "cd ../scripts && npm install --quiet && npx tsx generate-manifest.ts && cp ../skills-manifest.json ../app/skills-manifest.json",
+    "prebuild": "cd ../scripts && bun install && bunx tsx generate-manifest.ts && cp ../skills-manifest.json ../app/skills-manifest.json",
     "predev": "cp ../skills-manifest.json ./skills-manifest.json",
     "dev": "next dev",
     "build": "next build",
