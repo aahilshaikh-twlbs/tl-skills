@@ -1,0 +1,5 @@
+# Skill submissions require approval from designated maintainers.
+# Branch protection must have "Require review from Code Owners" enabled.
+# Add additional maintainers below as needed.
+
+/skills/ @aahilshaikh-twlbs
