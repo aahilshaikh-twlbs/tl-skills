@@ -15,6 +15,7 @@ export function assembleSkillMd(data: SkillFormData): string {
     .map(w => w.charAt(0).toUpperCase() + w.slice(1))
     .join(' ');
 
+  // Build a structured scaffold from the submission — reviewer fills in the gaps
   return `---
 name: ${data.slug}
 description: >
@@ -26,6 +27,36 @@ updated: ${today}
 # ${displayName}
 
 ${data.description.trim()}
+
+## When to Use
+<!-- Reviewer: expand into 2–4 specific trigger scenarios -->
+- ${data.description.trim()}
+
+## Workflow
+
+<!-- Reviewer: break this into numbered steps Claude should follow -->
+1. Identify the context and confirm the user's goal
+2. Gather any required inputs (files, links, prior context)
+3. Execute the core task
+4. Deliver output in the format most useful to the user
+
+## Output Template
+
+\`\`\`markdown
+<!-- Reviewer: replace with a realistic filled-in example of what this skill produces -->
+# ${displayName} Output
+
+[Output goes here]
+\`\`\`
+
+## Adaptations
+
+<!-- Reviewer: add variations for different tools, contexts, or user types -->
+- **Default**: ${data.description.trim()}
+
+## Tips
+- Be specific in your prompt to get better output
+<!-- Reviewer: add skill-specific tips and common mistakes to avoid -->
 `;
 }
 
@@ -44,7 +75,7 @@ ${data.description}
 
 ---
 
-### SKILL.md
+### SKILL.md (scaffold — reviewer should flesh out before merging)
 \`\`\`markdown
 ${skillMdContent}
 \`\`\`
