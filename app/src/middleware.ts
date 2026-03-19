@@ -15,19 +15,12 @@ const COOKIE_OPTS = {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Allow login page and auth API through
   if (PUBLIC_PATHS.some(p => pathname.startsWith(p))) {
-    return NextResponse.next();
-  }
-
-  // Allow Next.js internals
-  if (pathname.startsWith('/_next') || pathname === '/favicon.ico') {
     return NextResponse.next();
   }
 
   const auth = request.cookies.get('tl-auth');
   if (auth?.value === 'ok') {
-    // Refresh the cookie on every request — sliding window
     const res = NextResponse.next();
     res.cookies.set('tl-auth', 'ok', COOKIE_OPTS);
     return res;
@@ -39,5 +32,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon\\.ico).*)'],
 };

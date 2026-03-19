@@ -195,7 +195,7 @@ export default function SubmitPage() {
         </div>
 
         {/* Validation errors — shown once user starts filling in the form */}
-        {(form.slug || form.description || form.overview) && checks.some(c => !c.passed) && (
+        {(form.slug || form.description) && checks.some(c => !c.passed) && (
           <div style={{
             background: '#FFF0F0', border: '1px solid #FFCCC0',
             borderRadius: 12, padding: '16px 20px', marginBottom: 16,
